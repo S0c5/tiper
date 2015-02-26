@@ -32,14 +32,35 @@ var Tiper   = function (){
 
     
     this.is = function (obj, type){
+
+        
+        if(this.get(type) !== this.TYPES.string)
+        {
+            type = this.get(type)
+        }
+        if(this.get(type) === this.TYPES.string)
+        {
+            if(!type.match(/^_TIPER_\w+$/))
+            {
+                throw 'Error the type for compare';
+            }
+        }
         return this.get(obj) === type;
     };
     
     this.cast = function (inObj, typeOut) {
 
-        if(!typeOut.match(/^_TYPER_\w+$/))
+        if(this.get(typeOut) !== this.TYPES.string)
         {
             typeOut = this.get(typeOut)
+        }
+        
+        if(this.get(typeOut) === this.TYPES.string)
+        {
+            if(!typeOut.match(/^_TIPER_\w+$/))
+            {
+                throw 'Error the type for cast';
+            }
         }
 
         var isTypeArray = this.is(inObj, this.TYPES.array);

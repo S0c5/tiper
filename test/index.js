@@ -5,9 +5,10 @@
 
 
 var Tiper   = require('../');
+
 var should  = require('should');
 
-describe('Get types', function(){
+describe('Get types and compare', function(){
     it('get all types', function(){
         var array = [0,2,3];
         var number = 0;
@@ -23,6 +24,17 @@ describe('Get types', function(){
         Tiper.get(date).should.be.equal(Tiper.TYPES.date);
         Tiper.get(string).should.be.equal(Tiper.TYPES.string);
         Tiper.get(fun).should.be.equal(Tiper.TYPES.function);
+    });
+    it('Compare simplify', function(){
+               
+        var someObject = {name: 'foo'};
+        
+        Tiper.is(someObject, Tiper.TYPES.object).should.be.equal(true);
+        Tiper.is(someObject, {}).should.be.equal(true);
+
+        Tiper.is(someObject, Tiper.TYPES.array).should.be.equal(false);
+        Tiper.is(someObject, []).should.be.equal(false);
+        
     });
 });
 

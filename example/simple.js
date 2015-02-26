@@ -7,8 +7,7 @@ var Tiper = require('../');
 
 var OnlyForObject = function(object){
 
-  if(Tiper.get(object) !== Tiper.TYPES.object)
-  {
+  if(Tiper.get(object) !== Tiper.TYPES.object){
       throw  'only run with objects :)'
   }
 
@@ -16,8 +15,7 @@ var OnlyForObject = function(object){
 
 var OnlyArrayObject = function(array){
 
-    if(Tiper.is(array, Tiper.TYPES.array))
-    {
+    if(Tiper.is(array, Tiper.TYPES.array)){
         throw  'only run with arrays :)'
     }
 
