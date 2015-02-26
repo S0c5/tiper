@@ -29,7 +29,15 @@ var Tiper   = function (){
         'function'  : self.get(function(){})
     };
 
-
+    
+    // Extend TYPES TO main object
+    
+    for(var key in this.TYPES)
+    {
+        var value  = this.TYPES[key];
+        this[key.toUpperCase()] = value;
+    }
+    
     
     this.is = function (obj, type){
 

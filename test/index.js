@@ -18,21 +18,21 @@ describe('Get types and compare', function(){
         var fun = function(){};
         
         
-        Tiper.get(array).should.be.equal(Tiper.TYPES.array);
-        Tiper.get(number).should.be.equal(Tiper.TYPES.number);
-        Tiper.get(regex).should.be.equal(Tiper.TYPES.regex);
-        Tiper.get(date).should.be.equal(Tiper.TYPES.date);
-        Tiper.get(string).should.be.equal(Tiper.TYPES.string);
-        Tiper.get(fun).should.be.equal(Tiper.TYPES.function);
+        Tiper.get(array).should.be.equal(Tiper.ARRAY);
+        Tiper.get(number).should.be.equal(Tiper.NUMBER);
+        Tiper.get(regex).should.be.equal(Tiper.REGEX);
+        Tiper.get(date).should.be.equal(Tiper.DATE);
+        Tiper.get(string).should.be.equal(Tiper.STRING);
+        Tiper.get(fun).should.be.equal(Tiper.FUNCTION);
     });
     it('Compare simplify', function(){
                
         var someObject = {name: 'foo'};
         
-        Tiper.is(someObject, Tiper.TYPES.object).should.be.equal(true);
+        Tiper.is(someObject, Tiper.OBJECT).should.be.equal(true);
         Tiper.is(someObject, {}).should.be.equal(true);
 
-        Tiper.is(someObject, Tiper.TYPES.array).should.be.equal(false);
+        Tiper.is(someObject, Tiper.ARRAY).should.be.equal(false);
         Tiper.is(someObject, []).should.be.equal(false);
         
     });
@@ -43,12 +43,12 @@ describe('Cast' , function(){
         
         var array = [1,2,3];
         
-        var arrayCast = Tiper.cast(array, Tiper.TYPES.string);
+        var arrayCast = Tiper.cast(array, Tiper.STRING);
         
         for (var index in arrayCast)
         {
             var value = array[index];
-            Tiper.get(value).should.be.equal(Tiper.TYPES.string);
+            Tiper.get(value).should.be.equal(Tiper.STRING);
         }
         
     });
@@ -59,9 +59,9 @@ describe('Cast' , function(){
             jeimy: '17'
         };
 
-        var yearsCast = Tiper.cast(years, Tiper.TYPES.number);
-        Tiper.get(yearsCast.david).should.be.equal(Tiper.TYPES.number);
-        Tiper.get(yearsCast.jeimy).should.be.equal(Tiper.TYPES.number);
+        var yearsCast = Tiper.cast(years, Tiper.NUMBER);
+        Tiper.get(yearsCast.david).should.be.equal(Tiper.NUMBER);
+        Tiper.get(yearsCast.jeimy).should.be.equal(Tiper.NUMBER);
     });
     it('Cast Object with array and regex ', function(){
         
@@ -74,17 +74,17 @@ describe('Cast' , function(){
             regex: /w+/
         };
 
-        var multipleCast = Tiper.cast(multiple, Tiper.TYPES.string);
+        var multipleCast = Tiper.cast(multiple, Tiper.STRING);
         
         
         for (var index in multipleCast.array)
         {
             var value = array[index];
-            Tiper.get(value).should.be.equal(Tiper.TYPES.string);
+            Tiper.get(value).should.be.equal(Tiper.STRING);
         }
         
-        Tiper.get(multipleCast.object.lorena).should.be.equal(Tiper.TYPES.string);
-        Tiper.get(multipleCast.object.david).should.be.equal(Tiper.TYPES.string);
-        Tiper.get(multipleCast.regex).should.be.equal(Tiper.TYPES.string);
+        Tiper.get(multipleCast.object.lorena).should.be.equal(Tiper.STRING);
+        Tiper.get(multipleCast.object.david).should.be.equal(Tiper.STRING);
+        Tiper.get(multipleCast.regex).should.be.equal(Tiper.STRING);
     });
 });

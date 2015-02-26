@@ -7,7 +7,7 @@ var Tiper = require('../');
 
 var OnlyForObject = function(object){
 
-  if(Tiper.get(object) !== Tiper.TYPES.object){
+  if(Tiper.get(object) !== Tiper.OBJECT){
       throw  'only run with objects :)'
   }
 
@@ -15,14 +15,14 @@ var OnlyForObject = function(object){
 
 var OnlyArrayObject = function(array){
 
-    if(Tiper.is(array, Tiper.TYPES.array)){
+    if(Tiper.is(array, Tiper.OBJECT)){
         throw  'only run with arrays :)'
     }
 
 };
 
 var convertAllToString = function(anyType){
-    return Tiper.cast(anyType, Tiper.TYPES.string)
+    return Tiper.cast(anyType, Tiper.STRING)
 };
 
 
