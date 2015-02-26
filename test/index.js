@@ -4,7 +4,7 @@
  */
 
 
-var Typer   = require('../');
+var Tiper   = require('../');
 var should  = require('should');
 
 describe('Get types', function(){
@@ -17,12 +17,12 @@ describe('Get types', function(){
         var fun = function(){};
         
         
-        Typer.get(array).should.be.equal(Typer.TYPES.array);
-        Typer.get(number).should.be.equal(Typer.TYPES.number);
-        Typer.get(regex).should.be.equal(Typer.TYPES.regex);
-        Typer.get(date).should.be.equal(Typer.TYPES.date);
-        Typer.get(string).should.be.equal(Typer.TYPES.string);
-        Typer.get(fun).should.be.equal(Typer.TYPES.function);
+        Tiper.get(array).should.be.equal(Tiper.TYPES.array);
+        Tiper.get(number).should.be.equal(Tiper.TYPES.number);
+        Tiper.get(regex).should.be.equal(Tiper.TYPES.regex);
+        Tiper.get(date).should.be.equal(Tiper.TYPES.date);
+        Tiper.get(string).should.be.equal(Tiper.TYPES.string);
+        Tiper.get(fun).should.be.equal(Tiper.TYPES.function);
     });
 });
 
@@ -31,12 +31,12 @@ describe('Cast' , function(){
         
         var array = [1,2,3];
         
-        var arrayCast = Typer.cast(array, Typer.TYPES.string);
+        var arrayCast = Tiper.cast(array, Tiper.TYPES.string);
         
         for (var index in arrayCast)
         {
             var value = array[index];
-            Typer.get(value).should.be.equal(Typer.TYPES.string);
+            Tiper.get(value).should.be.equal(Tiper.TYPES.string);
         }
         
     });
@@ -47,9 +47,9 @@ describe('Cast' , function(){
             jeimy: '17'
         };
 
-        var yearsCast = Typer.cast(years, Typer.TYPES.number);
-        Typer.get(yearsCast.david).should.be.equal(Typer.TYPES.number);
-        Typer.get(yearsCast.jeimy).should.be.equal(Typer.TYPES.number);
+        var yearsCast = Tiper.cast(years, Tiper.TYPES.number);
+        Tiper.get(yearsCast.david).should.be.equal(Tiper.TYPES.number);
+        Tiper.get(yearsCast.jeimy).should.be.equal(Tiper.TYPES.number);
     });
     it('Cast Object with array and regex ', function(){
         
@@ -62,17 +62,17 @@ describe('Cast' , function(){
             regex: /w+/
         };
 
-        var multipleCast = Typer.cast(multiple, Typer.TYPES.string);
+        var multipleCast = Tiper.cast(multiple, Tiper.TYPES.string);
         
         
         for (var index in multipleCast.array)
         {
             var value = array[index];
-            Typer.get(value).should.be.equal(Typer.TYPES.string);
+            Tiper.get(value).should.be.equal(Tiper.TYPES.string);
         }
         
-        Typer.get(multipleCast.object.lorena).should.be.equal(Typer.TYPES.string);
-        Typer.get(multipleCast.object.david).should.be.equal(Typer.TYPES.string);
-        Typer.get(multipleCast.regex).should.be.equal(Typer.TYPES.string);
+        Tiper.get(multipleCast.object.lorena).should.be.equal(Tiper.TYPES.string);
+        Tiper.get(multipleCast.object.david).should.be.equal(Tiper.TYPES.string);
+        Tiper.get(multipleCast.regex).should.be.equal(Tiper.TYPES.string);
     });
 });

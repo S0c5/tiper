@@ -3,11 +3,11 @@
  */
 
 
-var Typer = require('../');
+var Tiper = require('../');
 
 var OnlyForObject = function(object){
 
-  if(Typer.get(object) !== Typer.TYPES.object)
+  if(Tiper.get(object) !== Tiper.TYPES.object)
   {
       throw  'only run with objects :)'
   }
@@ -16,7 +16,7 @@ var OnlyForObject = function(object){
 
 var OnlyArrayObject = function(array){
 
-    if(Typer.is(array, Typer.TYPES.array))
+    if(Tiper.is(array, Tiper.TYPES.array))
     {
         throw  'only run with arrays :)'
     }
@@ -24,7 +24,7 @@ var OnlyArrayObject = function(array){
 };
 
 var convertAllToString = function(anyType){
-    return Typer.cast(anyType, Typer.TYPES.string)
+    return Tiper.cast(anyType, Tiper.TYPES.string)
 };
 
 

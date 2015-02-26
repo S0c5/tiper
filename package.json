@@ -1,7 +1,7 @@
 {
-  "name": "typer",
+  "name": "tiper",
   "version": "0.0.1",
-  "description": "Typer Toot for nodejs ",
+  "description": "Tiper, Tool for nodejs ",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/S0c5/typer.git"
+    "url": "https://github.com/S0c5/tiper.git"
   },
   "keywords": [
     "typer",
@@ -24,9 +24,9 @@
   "author": "David Barinas <david.barinas.dev@gmail.com> (http://localhost/)",
   "license": "GPL 2.0",
   "bugs": {
-    "url": "https://github.com/S0c5/typer/issues"
+    "url": "https://github.com/S0c5/tiper/issues"
   },
-  "homepage": "https://github.com/S0c5/typer",
+  "homepage": "https://github.com/S0c5/tiper",
   "devDependencies": {
     "mocha": "^2.1.0"
   },

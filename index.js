@@ -5,10 +5,13 @@
 
 
 
-var Typer   = function (){
-    
+var Tiper   = function (){
+
+    this.getName = function (obj) {
+        return Object.prototype.toString.call(obj).split(' ')[1].replace(']','');
+    };
     this.get = function (obj) {
-        var type =  '_TYPER_' +Object.prototype.toString.call(obj).split(' ')[1].replace(']','')
+        var type =  '_TIPER_' +Object.prototype.toString.call(obj).split(' ')[1].replace(']','')
 
         
         return type;
@@ -89,4 +92,4 @@ var Typer   = function (){
     
 };
 
-module.exports = new Typer();
+module.exports = new Tiper();
