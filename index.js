@@ -6,7 +6,8 @@
 
 
 var Tiper   = function (){
-
+    var self = this;
+    
     this.getName = function (obj) {
         return Object.prototype.toString.call(obj).split(' ')[1].replace(']','');
     };
@@ -16,7 +17,7 @@ var Tiper   = function (){
         
         return type;
     };
-    var self = this;
+    
     this.TYPES = {
         number      : self.get(0),
         string      : self.get(""),
@@ -117,7 +118,15 @@ var Tiper   = function (){
             default :
                 throw "The " + typeOut + " is not a valid type for cast for " + this.get(inObj)
         }
-    }
+    };
+    this.getPrimitive = function(obj){
+        if(self.getName(obj) != self.TYPES.function)
+        {
+            return null;
+        }
+        
+        return obj.toString().match(/function ([\w\_]+)()/);
+    };
     
 };
 
