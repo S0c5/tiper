@@ -11,7 +11,11 @@ if you wanna compare array with object the result is the same.
     typeof [] === typeof {} // is true
 ```
 
+### Install
 
+```Bash
+  $ npm install tiper
+```
 
 ### Examples
 
