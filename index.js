@@ -120,7 +120,7 @@ var Tiper   = function (){
         }
     };
     this.getPrimitive = function(obj){
-        if(self.getName(obj) != self.TYPES.function)
+        if(self.get(obj) != self.TYPES.function)
         {
             return null;
         }
