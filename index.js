@@ -124,8 +124,8 @@ var Tiper   = function (){
         {
             return null;
         }
-        
-        return obj.toString().match(/function ([\w\_]+)()/);
+
+        return obj.toString().match(/function ([\w\_]+)()/)[1];
     };
     
 };
