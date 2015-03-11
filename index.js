@@ -7,14 +7,26 @@
 
 var Tiper   = function (){
     var self = this;
-    
     this.getName = function (obj) {
         return Object.prototype.toString.call(obj).split(' ')[1].replace(']','');
     };
-    this.get = function (obj) {
-        var type =  '_TIPER_' +Object.prototype.toString.call(obj).split(' ')[1].replace(']','')
+    this.getPrimitive = function(obj){
 
-        
+        if(self.getName(obj) === 'Undefined'){
+            return self.getName(obj);
+        }
+        if(self.getName(obj) !== 'Function'){
+            return self.getPrimitive((obj).constructor);
+        }
+        var match = obj.toString().match(/function ([\w\_]+)()/);
+        if(match !== null){
+            return match[1];
+        }
+        return 'Function';
+    };
+
+    this.get = function (obj) {
+        var type =  '_TIPER_' + self.getPrimitive(obj);
         return type;
     };
     
@@ -119,15 +131,7 @@ var Tiper   = function (){
                 throw "The " + typeOut + " is not a valid type for cast for " + this.get(inObj)
         }
     };
-    this.getPrimitive = function(obj){
-        if(self.get(obj) != self.TYPES.function)
-        {
-            return null;
-        }
 
-        return obj.toString().match(/function ([\w\_]+)()/)[1];
-    };
-    
 };
 
 module.exports = new Tiper();
