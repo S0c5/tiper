@@ -7,29 +7,17 @@
 
 var Tiper   = function (){
     var self = this;
+
     this.getName = function (obj) {
         return Object.prototype.toString.call(obj).split(' ')[1].replace(']','');
     };
-    this.getPrimitive = function(obj){
-
-        if(self.getName(obj) === 'Undefined'){
-            return self.getName(obj);
-        }
-        if(self.getName(obj) !== 'Function'){
-            return self.getPrimitive((obj).constructor);
-        }
-        var match = obj.toString().match(/function ([\w\_]+)()/);
-        if(match !== null){
-            return match[1];
-        }
-        return 'Function';
-    };
-
     this.get = function (obj) {
-        var type =  '_TIPER_' + self.getPrimitive(obj);
+        var type =  '_TIPER_' +Object.prototype.toString.call(obj).split(' ')[1].replace(']','')
+
+
         return type;
     };
-    
+
     this.TYPES = {
         number      : self.get(0),
         string      : self.get(""),
@@ -42,19 +30,19 @@ var Tiper   = function (){
         'function'  : self.get(function(){})
     };
 
-    
+
     // Extend TYPES TO main object
-    
+
     for(var key in this.TYPES)
     {
         var value  = this.TYPES[key];
         this[key.toUpperCase()] = value;
     }
-    
-    
+
+
     this.is = function (obj, type){
 
-        
+
         if(this.get(type) !== this.TYPES.string)
         {
             type = this.get(type)
@@ -68,14 +56,14 @@ var Tiper   = function (){
         }
         return this.get(obj) === type;
     };
-    
+
     this.cast = function (inObj, typeOut) {
 
         if(this.get(typeOut) !== this.TYPES.string)
         {
             typeOut = this.get(typeOut)
         }
-        
+
         if(this.get(typeOut) === this.TYPES.string)
         {
             if(!typeOut.match(/^_TIPER_\w+$/))
@@ -85,7 +73,7 @@ var Tiper   = function (){
         }
 
         var isTypeArray = this.is(inObj, this.TYPES.array);
-        
+
         if (isTypeArray)
         {
             for(var i in inObj)
@@ -97,20 +85,20 @@ var Tiper   = function (){
         }
 
         var isTypeObject = this.is(inObj, this.TYPES.object);
-        
+
         if(isTypeObject)
         {
             var objOut = {};
-            
+
             for( var key in inObj)
             {
                 var value = inObj[key];
                 objOut[key] = this.cast(value, typeOut);
             }
-            
+
             return objOut;
         }
-        
+
         switch(typeOut)
         {
             case this.TYPES.string:
@@ -120,7 +108,7 @@ var Tiper   = function (){
                 if(isNaN(number))
                     throw 'the input is not a number';
                 return number;
-            case this.TYPES.regex: 
+            case this.TYPES.regex:
                 return RegExp(inObj);
             case this.TYPES.date:
                 var date  = new Date(inObj);
@@ -130,6 +118,19 @@ var Tiper   = function (){
             default :
                 throw "The " + typeOut + " is not a valid type for cast for " + this.get(inObj)
         }
+    };
+    this.getPrimitive = function(obj){
+        if(self.getName(obj) === 'Undefined'){
+            return self.getName(obj);
+        }
+        if(self.getName(obj) !== 'Function'){
+            return self.getPrimitive((obj).constructor);
+        }
+        var match = obj.toString().match(/function ([\w\_]+)()/);
+        if(match !== null){
+            return match[1];
+        }
+        return 'Function';
     };
 
 };
